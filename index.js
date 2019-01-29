@@ -1,8 +1,15 @@
 const express = require('express')
+const ConnectorDB = require('./db/connectorDB')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => {
+	ConnectorDB.connect()
+	.then(() => res.send('connected'))
+	.catch(e => res.send('connection error', err.stack))
+})
+
+
 
 app.get('/participants', (req, res) =>{
 	let data = 
