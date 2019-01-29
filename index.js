@@ -32,4 +32,4 @@ app.get('/random', (req, res) =>{
 	res.send(data);
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT || 5000}!`))
