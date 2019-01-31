@@ -26,21 +26,15 @@ app.get('/createPersonTable', (req, res) => {
 })
 
 app.get('/participants', (req, res) =>{
-	let data = 
-		[
-			{
-				id: 0,
-				name: "Sebastian",
-				surname: "Vicario"
-			},
-			{
-				id: 1,
-				name: "Damian",
-				surname: "Ramonas"
-			}
-			
-		]
-	res.send(data);
+	ConnectorDB.getUsers()
+	.then(result => {
+		console.log(result);
+		res.status(200).send('connected');
+	})
+	.catch(err => {
+		console.log("error getusers",err);
+		res.status(404).send('connection error', err.stack);
+	})
 })
 
 app.get('/random', (req, res) =>{
