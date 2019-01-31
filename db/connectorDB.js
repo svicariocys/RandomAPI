@@ -1,4 +1,6 @@
-const pgp = require('pg-promise')
+const pgp = require('pg-promise')({
+    // Initialization Options
+})
 
 // Preparing the connection details:
 const cn = 'postgres://jugfndcqbzyppm:6ebf4d01f22eefdba0e876b0b6e5e8cb4ed859e4ee17273f89c15cd4d68708f1@ec2-54-221-253-228.compute-1.amazonaws.com:5432/d8ffu9pr1tolo';
@@ -22,14 +24,14 @@ class ConnectorDB{
   }
 
   static createPersonTable(){
-    return db.query('CREATE TABLE Person(
-     id serial PRIMARY KEY,
-     name VARCHAR (50) NOT NULL,
-     surname VARCHAR (50) NOT NULL,
-     email VARCHAR (355) UNIQUE NOT NULL,
-     created_on TIMESTAMP NOT NULL,
-     last_login TIMESTAMP
-    )');
+    return db.query([`CREATE TABLE Person(
+         id serial PRIMARY KEY,
+         name VARCHAR (50) NOT NULL,
+         surname VARCHAR (50) NOT NULL,
+         email VARCHAR (355) UNIQUE NOT NULL,
+         created_on TIMESTAMP NOT NULL,
+         last_login TIMESTAMP
+        )`]);
   }
   
 }
