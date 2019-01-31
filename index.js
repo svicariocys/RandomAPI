@@ -6,19 +6,24 @@ const port = 3000
 app.get('/', (req, res) => {
 	ConnectorDB.connect()
 	.then(result => {
-		console.log("success");
-
-		console.log(result);
-		// res.status(200).send('connected');
+		res.status(200).send('connected');
 	})
 	.catch(err => {
-		console.log("error connecting db",err);
-		// res.status(500).send('connection error', err.stack);
+		res.status(404).send('connection error', err);
 	})
-	res.send("trying to connect db")
 })
 
-
+app.get('/createPersonTable', (req, res) => {
+	ConnectorDB.createPersonTable()
+	.then(result => {
+		console.log("success");
+		res.status(200).send('connected');
+	})
+	.catch(err => {
+		console.log("error creating person table",err);
+		res.status(404).send('connection error', err.stack);
+	})
+})
 
 app.get('/participants', (req, res) =>{
 	let data = 
