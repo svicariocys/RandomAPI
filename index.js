@@ -28,8 +28,7 @@ app.get('/createPersonTable', (req, res) => {
 app.get('/participants', (req, res) =>{
 	ConnectorDB.getUsers()
 	.then(result => {
-		console.log(result);
-		res.status(200).send('connected');
+		res.status(200).send(result);
 	})
 	.catch(err => {
 		console.log("error getusers",err);
