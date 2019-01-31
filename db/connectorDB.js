@@ -22,14 +22,14 @@ class ConnectorDB{
   }
 
   static createPersonTable(){
-    return db.query("CREATE TABLE Person(
+    return db.query('CREATE TABLE Person(
      id serial PRIMARY KEY,
      name VARCHAR (50) NOT NULL,
      surname VARCHAR (50) NOT NULL,
      email VARCHAR (355) UNIQUE NOT NULL,
      created_on TIMESTAMP NOT NULL,
      last_login TIMESTAMP
-    );");
+    )');
   }
   
 }
