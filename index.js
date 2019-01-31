@@ -5,8 +5,17 @@ const port = 3000
 
 app.get('/', (req, res) => {
 	ConnectorDB.connect()
-	.then(() => res.send('connected'))
-	.catch(e => res.send('connection error', err.stack))
+	.then(result => {
+		console.log("success");
+
+		console.log(result);
+		// res.status(200).send('connected');
+	})
+	.catch(err => {
+		console.log("error connecting db",err);
+		// res.status(500).send('connection error', err.stack);
+	})
+	res.send("trying to connect db")
 })
 
 
@@ -39,4 +48,4 @@ app.get('/random', (req, res) =>{
 	res.send(data);
 })
 
-app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT || 5000}!`))
+app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT || port}!`))
