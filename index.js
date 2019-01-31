@@ -28,7 +28,7 @@ app.get('/createPersonTable', (req, res) => {
 app.get('/participants', (req, res) =>{
 	ConnectorDB.getUsers()
 	.then(result => {
-		res.status(200).send(result);
+		res.status(200).send({participants: result});
 	})
 	.catch(err => {
 		console.log("error getusers",err);
@@ -37,13 +37,15 @@ app.get('/participants', (req, res) =>{
 })
 
 app.get('/random', (req, res) =>{
-	let data = 
-	{
-		id: 0,
-		name: "Sebastian",
-		surname: "Vicario"
-	}
-	res.send(data);
+	ConnectorDB.getUsers()
+	.then(result => {
+		let participant = result[Math.floor(Math.random() * result.length)];
+		res.status(200).send(participant);
+	})
+	.catch(err => {
+		console.log("error getusers",err);
+		res.status(404).send('connection error', err.stack);
+	})
 })
 
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT || port}!`))
