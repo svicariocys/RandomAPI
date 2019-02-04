@@ -55,7 +55,7 @@ app.get('/random', (req, res) =>{
 
 app.post('/location', (req, res) =>{
 	let latitude = req.body.latitude;
-  let longtitude = req.body.longtitude;
+  let longtitude = req.body.longitude;
 
   res.status(200).send("Latitude: "+latitude+" Longitude: "+longtitude);
 })
